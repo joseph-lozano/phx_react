@@ -21,6 +21,8 @@ import "phoenix_html"
 import {Socket} from "phoenix"
 import {LiveSocket} from "phoenix_live_view"
 import topbar from "../vendor/topbar"
+import {useState} from "react"
+import {createRoot} from "react-dom/client"
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 let liveSocket = new LiveSocket("/live", Socket, {
@@ -41,4 +43,23 @@ liveSocket.connect()
 // >> liveSocket.enableLatencySim(1000)  // enabled for duration of browser session
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
+
+function App() {
+  const [state, setState] = useState(0);
+  return (
+    <div>
+      <h1>Hello, world!</h1>
+      <button onClick={() => setState(state + 1)}>Click me</button>
+      <p>You clicked {state} times</p>
+    </div>
+  )
+}
+
+const rootNode = document.getElementById('root');
+if (rootNode) {
+  const root = createRoot(rootNode);
+  root.render(<App />);
+}
+
+
 

@@ -13,7 +13,7 @@
     {
       devShells = forEachSupportedSystem ({ pkgs }: {
         default = pkgs.mkShell {
-          packages = (with pkgs; [ beam.packages.erlang_26.elixir_1_16 nodejs_20 ]) ++
+          packages = (with pkgs; [ beam.packages.erlang_26.elixir_1_16 nodejs_20 corepack ]) ++
             # Linux only
             (pkgs.lib.optionals (pkgs.stdenv.isLinux)
               (with pkgs; [ gigalixir inotify-tools libnotify ])) ++
